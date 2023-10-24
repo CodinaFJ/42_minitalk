@@ -67,12 +67,12 @@ all: libft ft_printf server client
 server: libft ft_printf $(SERVER)
 
 run_server:
-	./$(SERVER)
+	@$(SERVER)
 
 client: libft ft_printf $(CLIENT)
 
 run_client:
-	./$(CLIENT)
+	@$(CLIENT)
 
 libft: $(LIBFT)
 
