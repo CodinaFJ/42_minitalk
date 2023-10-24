@@ -72,7 +72,7 @@ run_server:
 client: libft ft_printf $(CLIENT)
 
 run_client:
-	@$(CLIENT)
+	@$(CLIENT) $(PID)
 
 libft: $(LIBFT)
 
