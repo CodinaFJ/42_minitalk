@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   char_to_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/10/26 21:27:23 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/10/26 19:34:01 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/10/26 20:42:58 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stddef.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
-#include "../../lib/ft_printf/ft_printf.h"
-#include "../../lib/libft/libft.h"
+#include <string.h>
 
 int	*char_to_bin(char c);
 
@@ -60,45 +60,26 @@ int	*char_to_bin(char c)
 	return (bin_arr);
 }
 
-void    send_to_server(int pid, int **binary_msg, int len)
+int	main(int argc, char **argv)
 {
-    int i;
-    int j;
+	(void) argc;
+	(void) argv;
 
-    i = 0;
-    while (i < len)
-    {
-        printf("\nWord %d of %d:\n\n", i + 1, len);
-        j = 0;
-        while (j < 8)
-        {
-            if (binary_msg[i][j] == 1)
-            {
-                printf("Send 1\n");
-                kill(pid, SIGUSR1);
-            }
-            else if (binary_msg[i][j] == 0)
-            {
-                printf("Send 0\n");
-                kill(pid, SIGUSR2);
-            }
-            usleep(100); // ? Esto por qué
-            // TODO: gestionar error si da otro número aquí 
-            j++;
-        }
-        i++;
-    }
-}
-
-int main(int argc, char **argv)
-{
-    int **result;
-    if (argc != 3)
-    {
-        ft_printf("Wrong number of parameters. Needed input:\n[1] SERVER PID\n[2] MESSAGE");
-        return (-1);
-    }
-    result = str_to_bin(argv[2]);
-    send_to_server(ft_atoi(argv[1]), str_to_bin(argv[2]), ft_strlen(argv[2]));
-    return (0);
+	char *str = argv[1];
+	int **result = str_to_bin(str);
+	int	len = strlen(str);
+	if (result != 0)
+	{
+		printf("Convert %s to bin -> \n", str);
+		for (int i = 0; i < len ; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				printf("%d", result[i][j]);
+			}
+			printf("\n");
+		}
+		free(str);
+	}
+	return (0);
 }
