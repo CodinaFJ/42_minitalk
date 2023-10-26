@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/10/26 21:27:23 by jcodina-         ###   ########.fr       */
+/*   Updated: 2023/10/26 22:06:50 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 
 int	*char_to_bin(char c);
 
-int **str_to_bin(char *str)
+int	**str_to_bin(char *str)
 {
-	int **result;
-	int len;
-	int byte_index;
-	
+	int	**result;
+	int	len;
+	int	byte_index;
+
 	len = strlen(str);
-	result = (int **) calloc(len, sizeof(int *));
 	byte_index = 0;
+	result = (int **) calloc(len, sizeof(int *));
 	if (!result)
 		return (0);
 	while (byte_index < len)
@@ -60,45 +60,46 @@ int	*char_to_bin(char c)
 	return (bin_arr);
 }
 
-void    send_to_server(int pid, int **binary_msg, int len)
+void	send_to_server(int pid, int **binary_msg, int len)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < len)
-    {
-        printf("\nWord %d of %d:\n\n", i + 1, len);
-        j = 0;
-        while (j < 8)
-        {
-            if (binary_msg[i][j] == 1)
-            {
-                printf("Send 1\n");
-                kill(pid, SIGUSR1);
-            }
-            else if (binary_msg[i][j] == 0)
-            {
-                printf("Send 0\n");
-                kill(pid, SIGUSR2);
-            }
-            usleep(100); // ? Esto por qué
-            // TODO: gestionar error si da otro número aquí 
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < len)
+	{
+		printf("\nWord %d of %d:\n\n", i + 1, len);
+		j = 0;
+		while (j < 8)
+		{
+			if (binary_msg[i][j] == 1)
+			{
+				printf("Send 1\n");
+				kill(pid, SIGUSR1);
+			}
+			else if (binary_msg[i][j] == 0)
+			{
+				printf("Send 0\n");
+				kill(pid, SIGUSR2);
+			}
+			usleep(100); // ? Esto por qué
+			// TODO: gestionar error si da otro número aquí 
+			j++;
+		}
+		i++;
+	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    int **result;
-    if (argc != 3)
-    {
-        ft_printf("Wrong number of parameters. Needed input:\n[1] SERVER PID\n[2] MESSAGE");
-        return (-1);
-    }
-    result = str_to_bin(argv[2]);
-    send_to_server(ft_atoi(argv[1]), str_to_bin(argv[2]), ft_strlen(argv[2]));
-    return (0);
+	int	**result;
+
+	if (argc != 3)
+	{
+		ft_printf("Wrong parameters. Input:\n[1] SERVER PID\n[2] MESSAGE");
+		return (-1);
+	}
+	result = str_to_bin(argv[2]);
+	send_to_server(ft_atoi(argv[1]), str_to_bin(argv[2]), ft_strlen(argv[2]));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/10/26 21:57:23 by jcodina-         ###   ########.fr       */
+/*   Updated: 2023/10/26 22:09:14 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "../../lib/libft/libft.h"
 #include "../../lib/ft_printf/ft_printf.h"
 
-char    bin_to_char(int *bin)
+char	bin_to_char(int *bin)
 {
 	int	bit_index;
 	int	c;
@@ -32,16 +32,16 @@ char    bin_to_char(int *bin)
 			c = (c << 1);
 		bit_index++;
 	}
-	return (char)(c);
+	return ((char) c);
 }
 
-void    client_signal_handler(int signum, siginfo_t* info, void* context)
+void	client_signal_handler(int signum, siginfo_t *info, void *context)
 {
-	static int bit = 0;
-	static int *binary_char;
+	static int	bit = 0;
+	static int	*binary_char;
 
 	(void) info;
-  	(void) context;
+	(void) context;
 	if (bit == 0)
 	{
 		if (binary_char)
@@ -54,7 +54,6 @@ void    client_signal_handler(int signum, siginfo_t* info, void* context)
 		binary_char[bit] = 1;
 	else if (signum == SIGUSR2)
 		binary_char[bit] = 0;
-  
 	bit++;
 	if (bit == 8)
 	{
@@ -63,7 +62,7 @@ void    client_signal_handler(int signum, siginfo_t* info, void* context)
 	}
 }
 
-int main()
+int	main(void)
 {
 	int					pid;
 	struct sigaction	sa;
