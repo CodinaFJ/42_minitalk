@@ -120,4 +120,8 @@ fclean_libs:
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re server client
+norminette:
+	norminette $(SRC_DIR_CLIENT)
+	norminette $(SRC_DIR_SERVER)
+
+.PHONY: all bonus clean fclean re server client norminette
