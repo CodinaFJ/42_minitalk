@@ -6,23 +6,23 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/11/02 17:30:01 by jcodina-         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:42:50 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-void	clean_array(int **array, int stop_index)
+void	clean_matrix(int **matrix, int stop_index)
 {
 	int	i;
 
 	i = 0;
 	while (i < stop_index)
 	{
-		free(array[i]);
+		free(matrix[i]);
 		i++;
 	}
-	free(array);
+	free(matrix);
 }
 
 int	*char_to_bin(char c)
@@ -31,9 +31,9 @@ int	*char_to_bin(char c)
 	int		*bin_arr;
 	int		i;
 
-	bin_arr = (int *) calloc(8, sizeof(int));
+	bin_arr = (int *) ft_calloc(8, sizeof(int));
 	if (!bin_arr)
-		return (0);
+		return (NULL);
 	bit_index = 7;
 	i = 0;
 	while (bit_index >= 0)
@@ -52,15 +52,15 @@ int	**str_to_bin(char *str)
 
 	len = strlen(str);
 	byte_index = 0;
-	result = (int **) calloc(len, sizeof(int *));
+	result = (int **) ft_calloc(len, sizeof(int *));
 	if (!result)
 		return (0);
 	while (byte_index < len)
 	{
-		*(result[byte_index]) = char_to_bin(str[byte_index]);
-		if (!result[byte_index])
+		*(result + byte_index) = char_to_bin(str[byte_index]);
+		if (*(result + byte_index) == NULL)
 		{
-			clean_array(result, byte_index);
+			clean_matrix(result, byte_index);
 			return (NULL);
 		}
 		byte_index++;
@@ -92,7 +92,7 @@ void	send_to_server(int pid, int **binary_msg, int len)
 
 int	main(int argc, char **argv)
 {
-	int	**result;
+	int	**binary_message;
 
 	if (argc != 3)
 	{
@@ -100,9 +100,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	register_sig_handler();
-	result = str_to_bin(argv[2]);
-	if (result == NULL)
+	binary_message = str_to_bin(argv[2]);
+	if (binary_message == NULL)
 		return (1);
-	send_to_server(ft_atoi(argv[1]), str_to_bin(argv[2]), ft_strlen(argv[2]));
+	send_to_server(ft_atoi(argv[1]), binary_message, ft_strlen(argv[2]));
 	return (0);
 }
