@@ -39,7 +39,8 @@ OBJS_SERVER	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_SERVER)))
 Sources & objects - Client
 ########################################################################################
 
-FILES_CLIENT	=	client
+FILES_CLIENT	=	client			\
+					client_comms
 
 SRCS_CLIENT	=	$(addsuffix .c, $(FILES_CLIENT))
 OBJS_CLIENT	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_CLIENT)))
@@ -66,13 +67,7 @@ all: libft ft_printf server client
 
 server: libft ft_printf $(SERVER)
 
-run_server:
-	@$(SERVER)
-
 client: libft ft_printf $(CLIENT)
-
-run_client:
-	@$(CLIENT) $(PID) %(MESSAGE)
 
 libft: $(LIBFT)
 
