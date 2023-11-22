@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/11/02 17:42:50 by jcodina-         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:26:30 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	send_to_server(int pid, int **binary_msg, int len)
 	}
 }
 
+// !Probablemente para que funcione con UTF-16 haya que cambiar de char a wchar
 int	main(int argc, char **argv)
 {
 	int	**binary_message;

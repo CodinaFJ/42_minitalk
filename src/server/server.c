@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/11/02 16:14:17 by jcodina-         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:26:23 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	client_signal_handler(int signum, siginfo_t *info, void *context)
 	kill(info->si_pid, SIGUSR1);
 }
 
+
+// !Probablemente para que funcione con UTF-16 haya que cambiar de char a wchar
 int	main(void)
 {
 	int					pid;
