@@ -40,7 +40,11 @@ Sources & objects - Client
 ########################################################################################
 
 FILES_CLIENT	=	client			\
-					client_comms
+					client_comms	\
+					client_ack		\
+					client_data		\
+					matrix			\
+					to_binary
 
 SRCS_CLIENT	=	$(addsuffix .c, $(FILES_CLIENT))
 OBJS_CLIENT	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_CLIENT)))

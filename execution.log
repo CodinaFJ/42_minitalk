@@ -1,0 +1,179 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                Welcome to Francinette, a 42 tester framework!                ║
+╚═══════════════════════╦══════════════════════════════╦═══════════════════════╝
+                        ║           minitalk           ║
+                        ╚══════════════════════════════╝
+⠋ Preparing framework⠙ Preparing framework⠹ Preparing framework⠸ Preparing framework⠼ Preparing framework⠴ Preparing framework⠦ Preparing framework⠧ Preparing framework⠇ Preparing framework⠏ Preparing framework⠋ Preparing framework⠙ Preparing framework⠹ Preparing framework⠸ Preparing framework⠼ Preparing framework⠴ Preparing framework✔ Preparing framework
+⠋ Executing: norminette⠙ Executing: norminette⠹ Executing: norminette⠸ Executing: norminette⠼ Executing: norminette⠴ Executing: norminette⠦ Executing: norminette⠧ Executing: norminette⠇ Executing: norminette⠏ Executing: norminette⠋ Executing: norminette⠙ Executing: norminette⠹ Executing: norminette✖ Executing: norminette
+lib/ft_printf/ft_printf.c: OK!
+lib/ft_printf/ft_printf.h: OK!
+lib/ft_printf/printf_char.c: OK!
+lib/ft_printf/printf_hex.c: OK!
+lib/ft_printf/printf_int.c: OK!
+lib/ft_printf/printf_ptr.c: OK!
+lib/ft_printf/printf_str.c: OK!
+lib/libft/ft_atoi.c: OK!
+lib/libft/ft_bzero.c: OK!
+lib/libft/ft_calloc.c: OK!
+lib/libft/ft_isalnum.c: OK!
+lib/libft/ft_isalpha.c: OK!
+lib/libft/ft_isascii.c: OK!
+lib/libft/ft_isdigit.c: OK!
+lib/libft/ft_isprint.c: OK!
+lib/libft/ft_itoa.c: OK!
+lib/libft/ft_lstadd_back_bonus.c: OK!
+lib/libft/ft_lstadd_front_bonus.c: OK!
+lib/libft/ft_lstclear_bonus.c: OK!
+lib/libft/ft_lstdelone_bonus.c: OK!
+lib/libft/ft_lstiter_bonus.c: OK!
+lib/libft/ft_lstlast_bonus.c: OK!
+lib/libft/ft_lstmap_bonus.c: OK!
+lib/libft/ft_lstnew_bonus.c: OK!
+lib/libft/ft_lstsize_bonus.c: OK!
+lib/libft/ft_memchr.c: OK!
+lib/libft/ft_memcmp.c: OK!
+lib/libft/ft_memcpy.c: OK!
+lib/libft/ft_memmove.c: OK!
+lib/libft/ft_memset.c: OK!
+lib/libft/ft_putchar_fd.c: OK!
+lib/libft/ft_putendl_fd.c: OK!
+lib/libft/ft_putnbr_base.c: OK!
+lib/libft/ft_putnbr_fd.c: OK!
+lib/libft/ft_putnbr_hex.c: OK!
+lib/libft/ft_putstr_fd.c: OK!
+lib/libft/ft_split.c: Error!
+Error: PREPROC_NO_SPACE     (line:  13, col:   9):	Missing space after preprocessor directive
+lib/libft/ft_strchr.c: OK!
+lib/libft/ft_strdup.c: OK!
+lib/libft/ft_striteri.c: OK!
+lib/libft/ft_strjoin.c: OK!
+lib/libft/ft_strlcat.c: OK!
+lib/libft/ft_strlcpy.c: OK!
+lib/libft/ft_strlen.c: OK!
+lib/libft/ft_strmapi.c: OK!
+lib/libft/ft_strncmp.c: OK!
+lib/libft/ft_strnstr.c: OK!
+lib/libft/ft_strrchr.c: OK!
+lib/libft/ft_strtrim.c: OK!
+lib/libft/ft_substr.c: OK!
+lib/libft/ft_tolower.c: OK!
+lib/libft/ft_toupper.c: OK!
+lib/libft/libft.h: OK!
+src/client/client.c: OK!
+src/client/client.h: OK!
+src/client/client_comms.c: OK!
+src/server/server.c: OK!
+
+⠋ Executing: make fclean all (no bonus)⠙ Executing: make fclean all (no bonus)⠹ Executing: make fclean all (no bonus)⠸ Executing: make fclean all (no bonus)⠼ Executing: make fclean all (no bonus)⠴ Executing: make fclean all (no bonus)⠦ Executing: make fclean all (no bonus)⠧ Executing: make fclean all (no bonus)⠇ Executing: make fclean all (no bonus)⠏ Executing: make fclean all (no bonus)⠋ Executing: make fclean all (no bonus)⠙ Executing: make fclean all (no bonus)⠹ Executing: make fclean all (no bonus)⠸ Executing: make fclean all (no bonus)⠼ Executing: make fclean all (no bonus)⠴ Executing: make fclean all (no bonus)⠦ Executing: make fclean all (no bonus)⠧ Executing: make fclean all (no bonus)⠇ Executing: make fclean all (no bonus)⠏ Executing: make fclean all (no bonus)⠋ Executing: make fclean all (no bonus)⠙ Executing: make fclean all (no bonus)⠹ Executing: make fclean all (no bonus)⠸ Executing: make fclean all (no bonus)⠼ Executing: make fclean all (no bonus)⠴ Executing: make fclean all (no bonus)⠦ Executing: make fclean all (no bonus)✔ Executing: make fclean all (no bonus)
+⠋ Preparing tests: fsoares (my own tests)⠙ Preparing tests: fsoares (my own tests)⠹ Preparing tests: fsoares (my own tests)⠸ Preparing tests: fsoares (my own tests)⠼ Preparing tests: fsoares (my own tests)⠴ Preparing tests: fsoares (my own tests)⠦ Preparing tests: fsoares (my own tests)⠧ Preparing tests: fsoares (my own tests)✖ Preparing tests: fsoares (my own tests)
+Undefined symbols for architecture x86_64:
+  "___asan_handle_no_return", referenced from:
+      _show_signal_msg in server.o
+      _handle_termination in server.o
+  "___asan_init", referenced from:
+      _asan.module_ctor in server.o
+  "___asan_memcpy", referenced from:
+      __add_malloc in server.o
+      __mark_as_free in server.o
+      _get_malloc_size in server.o
+      _print_mallocs in server.o
+      _check_leaks in server.o
+      _get_all_allocs in server.o
+      _show_malloc_stack in server.o
+      ...
+  "___asan_memset", referenced from:
+      _malloc in server.o
+  "___asan_option_detect_stack_use_after_return", referenced from:
+      ___main2 in server.o
+      _show_signal_msg in server.o
+      _setup_framework in server.o
+      _set_signature in server.o
+      _error in server.o
+      __add_malloc in server.o
+      __mark_as_free in server.o
+      ...
+  "___asan_register_image_globals", referenced from:
+      _asan.module_ctor in server.o
+  "___asan_report_load1", referenced from:
+      __mark_as_free in server.o
+      _get_malloc_size in server.o
+      _print_mallocs in server.o
+      _check_leaks in server.o
+      _get_all_allocs in server.o
+      _show_malloc_stack in server.o
+  "___asan_report_load4", referenced from:
+      _bin_to_char in server.o
+      _client_signal_handler in server.o
+      _set_signature in server.o
+      _check_leaks in server.o
+      _get_all_allocs in server.o
+      _add_trace_to_signature in server.o
+      _show_malloc_stack in server.o
+      ...
+  "___asan_report_load8", referenced from:
+      _show_signal_msg in server.o
+      _save_traces in server.o
+      _setup_framework in server.o
+      _error in server.o
+      _malloc in server.o
+      __mark_as_free in server.o
+      _reset_malloc_mock in server.o
+      ...
+  "___asan_report_store1", referenced from:
+      __add_malloc in server.o
+      __mark_as_free in server.o
+      _get_all_allocs in server.o
+  "___asan_report_store4", referenced from:
+      _client_signal_handler in server.o
+      ___main2 in server.o
+      _set_signature in server.o
+      __add_malloc in server.o
+      _get_all_allocs in server.o
+  "___asan_report_store8", referenced from:
+      ___main2 in server.o
+      _setup_framework in server.o
+      __add_malloc in server.o
+      _get_all_allocs in server.o
+      _show_malloc_stack in server.o
+  "___asan_set_shadow_00", referenced from:
+      _setup_framework in server.o
+  "___asan_set_shadow_f5", referenced from:
+      __add_malloc in server.o
+  "___asan_set_shadow_f8", referenced from:
+      _setup_framework in server.o
+  "___asan_stack_free_5", referenced from:
+      _setup_framework in server.o
+  "___asan_stack_malloc_0", referenced from:
+      ___main2 in server.o
+  "___asan_stack_malloc_1", referenced from:
+      _set_signature in server.o
+      _error in server.o
+      __mark_as_free in server.o
+      _get_malloc_size in server.o
+      _print_mallocs in server.o
+      _check_leaks in server.o
+      _get_all_allocs in server.o
+      ...
+  "___asan_stack_malloc_2", referenced from:
+      _show_signal_msg in server.o
+      _show_malloc_stack in server.o
+  "___asan_stack_malloc_3", referenced from:
+      __add_malloc in server.o
+  "___asan_stack_malloc_5", referenced from:
+      _setup_framework in server.o
+  "___asan_unregister_image_globals", referenced from:
+      _asan.module_dtor in server.o
+  "___asan_version_mismatch_check_apple_clang_1103", referenced from:
+      _asan.module_ctor in server.o
+ld: symbol(s) not found for architecture x86_64
+clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
+make[1]: *** [bin/server.out] Error 1
+make: *** [all] Error 2
+Problem preprating the testes, please contact me at fsoares- in slack or open an issue on github
+
+Summary: no bonus
+
+Norminette Errors: lib/libft/ft_split.c
+
+Failed tests: fsoares
+
