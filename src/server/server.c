@@ -6,16 +6,13 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:26:35 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:59:38 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
-#include "../../lib/libft/includes/libft.h"
-#include "../../lib/ft_printf/ft_printf.h"
+#include "server.h"
+
+struct t_server_data	g_server_data;
 
 unsigned char	bin_to_char(int *bin)
 {
@@ -67,15 +64,11 @@ void	client_signal_handler(int signum, siginfo_t *info, void *context)
 int	main(void)
 {
 	int					pid;
-	struct sigaction	sa;
+	
 
 	pid = getpid();
 	ft_printf("Process PID: %d await for SIGUSR.\n", pid);
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART | SA_SIGINFO;
-	sa.sa_sigaction = client_signal_handler;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	register_sig_handler();
 	while (1)
 	{
 		pause();

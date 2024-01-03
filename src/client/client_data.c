@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:01:09 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:34:15 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:59:40 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ t_client_data	*client_data_init(char *pid, char *msg)
 	client_data->ack = false;
 	client_data->server_pid = ft_atoi(pid);
 	client_data->binary_msg = str_to_bin(msg);
-	client_data->binary_msg_len = ft_strlen(msg);
+	client_data->msg_len = ft_strlen(msg);
 	return (client_data);
 }
 
 void	client_data_clean(t_client_data *client_data)
 {
-	matrix_clean(client_data->binary_msg, client_data->binary_msg_len);
+	matrix_clean(client_data->binary_msg, client_data->msg_len);
 	free(client_data);
 }

@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:36:52 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:37:36 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:51:29 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	g_server_ack = false;
 
-void	sig_handler(int signum, siginfo_t *info, void *context)
+void	sig_ack_handler(int signum, siginfo_t *info, void *context)
 {
 	(void) signum;
 	(void) info;

@@ -6,13 +6,13 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:16:08 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/12/14 13:28:51 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:55:10 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-int	*char_to_bin(char c)
+int	*uint_to_bin(unsigned int c)
 {
 	int		bit_index;
 	int		*bin_arr;
@@ -44,7 +44,7 @@ int	**str_to_bin(char *str)
 		return (NULL);
 	while (byte_index < len)
 	{
-		*(result + byte_index) = char_to_bin(str[byte_index]);
+		*(result + byte_index) = uint_to_bin(str[byte_index]);
 		if (*(result + byte_index) == NULL)
 		{
 			matrix_clean(result, byte_index);
@@ -55,10 +55,10 @@ int	**str_to_bin(char *str)
 	return (result);
 }
 
-unsigned char	bin_to_char(int *bin)
+unsigned int	bin_to_int(int *bin)
 {
-	int	bit_index;
-	int	c;
+	int				bit_index;
+	unsigned int	c;
 
 	c = 0;
 	bit_index = 0;
@@ -71,5 +71,5 @@ unsigned char	bin_to_char(int *bin)
 		bit_index++;
 	}
 	ft_printf("%c", c);
-	return ((unsigned char) c);
+	return ((unsigned int) c);
 }

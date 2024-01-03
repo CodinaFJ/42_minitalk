@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:58:50 by jcodina-         ###   ########.fr       */
+/*   Created: 2024/01/03 10:49:41 by jcodina-          #+#    #+#             */
+/*   Updated: 2024/01/03 11:02:49 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#ifndef SERVER_H
+# define SERVER_H
 # include <stdio.h>
 # include <stdlib.h>
 # include <signal.h>
@@ -19,57 +19,34 @@
 # include "../../lib/ft_printf/ft_printf.h"
 # include "../../lib/libft/includes/libft.h"
 
-# define TIMEOUT 500000
-
 /* ************************************************************************** */
 /*   Typedefs															      */
 /* ************************************************************************** */
 
-/*									ENUMS									*/
-
-typedef enum
+typedef enum e_server_state
 {
-	true = 1,
-	false = 0
-}	t_bool;
+    IDLE,
+    RCV_SIZE,
+    RCV_MSG
+}   e_t_server_state;
 
-/*									STRUCTS									*/
-
-typedef struct s_client_data
+typedef struct s_server_data
 {
-	t_bool	ack;
-	int		server_pid;
-	int		**binary_msg;
-	size_t	msg_len;
-}	t_client_data;
+    e_t_server_state    state;
+    size_t              msg_size;
+    int                 *msg_size_bin;
+    char                *msg;
+    int                 **msg_bin;
+    int                 bit;
+    pid_t               client_pid;
+}   t_server_data;
 
 /* ************************************************************************** */
 /*   Functions															      */
 /* ************************************************************************** */
 
-/*									CLIENT COMMS							  */
+/*									SERVER COMMS							  */
 
-void			register_sig_handler(void);
-
-/*									CLIENT ACK								  */
-
-void			wait_for_server_ack(void);
-void			sig_ack_handler(int signum, siginfo_t *info, void *context);
-
-/*									CLIENT DATA								  */
-
-t_client_data	*client_data_init(char *pid, char *msg);
-void			client_data_clean(t_client_data *client_data);
-
-/*									MATRIX									  */
-
-void			matrix_clean(int **matrix, int len);
-void			print_tab(int **tab, size_t len);
-void			print_arr(int *arr, size_t len);
-
-/*									TO BINARY								  */
-
-int				**str_to_bin(char *str);
-unsigned int	bin_to_int(int *bin);
+void    register_sig_handler(void);
 
 #endif
