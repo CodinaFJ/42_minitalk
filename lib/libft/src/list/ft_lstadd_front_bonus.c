@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/18 15:47:07 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:22:46 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	printf_hex_low(long long var)
+#include "../../includes/libft.h"
+/**
+ * Adds given new node to the front of given list lst.
+ * @param lst Pointer to first node in list where to add the new node.
+ * @param new Node to add
+ * @warning t_list **lst needs to be initialized first. In case of empty list please do "lst = NULL" before.
+ */
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
-
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	new->next = *lst;
+	*lst = new;
 }

@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/10 16:06:18 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:22:18 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/libft.h"
 
-int	printf_hex_low(long long var)
+/**
+ * Writes n zeroed bytes starting at s. If n is zero, bzero() does nothing.
+ * @param s string to be filled
+ * @param n number of bytes to zero
+*/
+void	ft_bzero(void *s, size_t n)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
-
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	if (n != 0)
+		ft_memset(s, 0, n);
 }

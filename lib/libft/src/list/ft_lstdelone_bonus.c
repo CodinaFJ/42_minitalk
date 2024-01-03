@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/18 16:16:53 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:22:43 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	printf_hex_low(long long var)
+#include "../../includes/libft.h"
+/**
+ * Free memory of content of node lst using del function given.
+ * @param lst Node to free.
+ * @param del Function to use to free content.
+ */
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
-
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	if (lst != NULL && del != NULL)
+	{
+		(*del)(lst->content);
+		free(lst);
+	}
 }

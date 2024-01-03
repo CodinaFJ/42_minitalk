@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/12/14 13:31:14 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:26:35 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
-#include "../../lib/libft/libft.h"
+#include "../../lib/libft/includes/libft.h"
 #include "../../lib/ft_printf/ft_printf.h"
 
 unsigned char	bin_to_char(int *bin)

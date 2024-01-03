@@ -3,7 +3,7 @@
 #		PROJECT: Libft																	#\
 #########################################################################################
 
-NAME = libft.a
+NAME = $(BIN_DIR)libft.a
 
 CC	= cc
 CFLAGS = -Wall -Wextra -Werror
@@ -14,69 +14,122 @@ RM = rm -rf
 Directories
 ########################################################################################
 
-HDR_DIR	=	.
-SRC_DIR	=	.
+HDR_DIR	=	includes/
+BIN_DIR =	bin/
+SRC_DIR	=	src/
+
+ARRAY_DIR =		array/
+CTYPE_DIR =		ctype/
+LIST_DIR =		list/
+MATH_DIR =		math/
+STDIO_DIR =		stdio/
+STDLIB_DIR =	stdlib/
+STRING_DIR =	string/
+STRMTRX_DIR =	strsmatrix/
+
 
 ########################################################################################\
 Sources & objects for Libft
 ########################################################################################
 
-FILES	=	ft_memcmp \
-			ft_bzero \
-			ft_memcpy \
-			ft_memmove \
-			ft_memset \
-			ft_split \
-			ft_strdup \
-			ft_strlcat \
-			ft_strlcpy \
-			ft_strtrim \
-			ft_calloc \
-			ft_atoi \
-			ft_itoa \
-			ft_isalnum \
-			ft_isalpha \
-			ft_isascii \
-			ft_isdigit \
-			ft_isprint \
-			ft_tolower \
-			ft_toupper \
-			ft_putchar_fd \
-			ft_putendl_fd \
-			ft_putnbr_fd \
-			ft_putnbr_base \
-			ft_putnbr_hex \
-			ft_putstr_fd \
-			ft_memchr \
-			ft_strchr \
-			ft_strjoin \
-			ft_strncmp \
-			ft_strnstr \
-			ft_strrchr \
-			ft_substr \
-			ft_striteri \
-			ft_strlen \
-			ft_strmapi \
+ARRAY_FILES =	ft_arrset
 
-SRCS	=	$(addsuffix .c, $(FILES))
-OBJS	=	$(addsuffix .o, $(FILES))
-			
-########################################################################################\
-Bonus sources and objects for Libft
-########################################################################################
+CTYPE_FILES	=	ft_isalnum	\
+				ft_isalpha	\
+				ft_isascii	\
+				ft_isblank	\
+				ft_isdigit	\
+				ft_islower	\
+				ft_isprint	\
+				ft_isspace	\
+				ft_isupper	\
+				ft_tolower	\
+				ft_toupper	
 
-BFILES	=	ft_lstadd_back_bonus \
-			ft_lstadd_front_bonus \
-			ft_lstclear_bonus \
-			ft_lstdelone_bonus \
-			ft_lstiter_bonus \
-			ft_lstlast_bonus \
-			ft_lstmap_bonus \
-			ft_lstnew_bonus \
-			ft_lstsize_bonus \
+LIST_FILES =	ft_lstadd_back_bonus	\
+				ft_lstadd_front_bonus	\
+				ft_lstclear_bonus		\
+				ft_lstdelone_bonus		\
+				ft_lstiter_bonus		\
+				ft_lstlast_bonus		\
+				ft_lstmap_bonus			\
+				ft_lstnew_bonus			\
+				ft_lstsize_bonus		\
+				ft_lst_exists			\
+				ft_lst_remove			\
+				ft_lst_remove_at		\
+				ft_lst_removeall		\
+				ft_lst_dup				\
 
-BSRCS	=	$(addsuffix .c, $(BFILES))
-BOBJS	=	$(addsuffix .o, $(BFILES))
+
+MATH_FILES =	ft_maxmin	\
+				ft_pow
+
+STDIO_FILES =	ft_putchar_fd	\
+				ft_putendl_fd	\
+				ft_putnbr_fd	\
+				ft_putnbrlen_fd	\
+				ft_putnbrlen_hex \
+				ft_putstr_fd	\
+				ft_putstrlen_fd	\
+				ft_putnbr_base
+
+STDLIB_FILES =	frees 		\
+				ft_calloc	\
+				ft_atoi		\
+				ft_itoa		
+
+STRING_FILES =	ft_memcmp	\
+				ft_strcmp	\
+				ft_bzero	\
+				ft_memccpy	\
+				ft_memcpy	\
+				ft_memmove	\
+				ft_memset	\
+				ft_split	\
+				ft_strcat	\
+				ft_strcpy	\
+				ft_strdup	\
+				ft_strlcat	\
+				ft_strlcpy	\
+				ft_strncat	\
+				ft_strncpy	\
+				ft_strtrim	\
+				ft_memchr 	\
+				ft_memrchr 	\
+				ft_strchr 	\
+				ft_strjoin 	\
+				ft_strncmp 	\
+				ft_strnstr 	\
+				ft_strrchr 	\
+				ft_strstr 	\
+				ft_substr 	\
+				ft_striteri	\
+				ft_strlen 	\
+				ft_strmapi 	\
+
+STRSMTRX_FILES =	ft_strs_add_line	\
+					ft_strs_cols		\
+					ft_strs_rows		\
+					ft_strs_clear		\
+					ft_strs_colcmp		\
+					ft_strs_rowcmp		\
+					ft_strschr			\
+					ft_strscpy			\
+					ft_strsdup
+
+
+FILES	=	$(addprefix $(CTYPE_DIR), $(CTYPE_FILES))		\
+			$(addprefix $(ARRAY_DIR), $(ARRAY_FILES))		\
+			$(addprefix $(LIST_DIR), $(LIST_FILES))			\
+			$(addprefix $(MATH_DIR), $(MATH_FILES))			\
+			$(addprefix $(STDIO_DIR), $(STDIO_FILES))		\
+			$(addprefix $(STDLIB_DIR), $(STDLIB_FILES))		\
+			$(addprefix $(STRING_DIR), $(STRING_FILES))		\
+			$(addprefix $(STRMTRX_DIR), $(STRSMTRX_FILES))
+		
+SRCS	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
+OBJS	=	$(addprefix $(BIN_DIR), $(addsuffix .o, $(FILES)))
 
 ########################################################################################\
 Colors
@@ -100,11 +153,11 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS)
-	@echo "\n$(G)Basic library compiled!$(DEF_COLOR)-> $(NAME)\n"
+	@echo "\n$(G)Library compiled!$(DEF_COLOR)-> $@\n"
 
-%.o:%.c
+$(BIN_DIR)%.o:$(SRC_DIR)%.c
 	@echo "$(Y)Compiling: $< $(DEF_COLOR)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HDR_DIR) -c $< -o $@
 
 bonus: $(OBJS) $(BOBJS)
 	@$(AR) $(NAME) $(OBJS) $(BOBJS)
@@ -119,5 +172,3 @@ fclean: clean
 	@echo "$(R)Library .a file removed$(DEF_COLOR)\n"
 
 re: fclean all
-
-.PHONY: all bonus clean fclean re

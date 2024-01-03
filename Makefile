@@ -9,7 +9,7 @@ NAME = minitalk
 
 CC	= cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_PATH = ./lib/libft/
+LIBFT_PATH = ./lib/libft/bin/
 FT_PRINTF_PATH = ./lib/ft_printf/
 LIBFT = $(LIBFT_PATH)libft.a
 FT_PRINTF = $(FT_PRINTF_PATH)libftprintf.a

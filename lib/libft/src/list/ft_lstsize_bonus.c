@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/18 15:51:56 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:22:36 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	printf_hex_low(long long var)
+#include "../../includes/libft.h"
+/**
+ * Calculates number of nodes of a list.
+ * @param lst First node of the list
+ * @return Length of the list.
+ */
+int	ft_lstsize(t_list *lst)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
+	int		i;
+	t_list	*node;
 
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	i = 0;
+	node = lst;
+	while (node != NULL)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
 }

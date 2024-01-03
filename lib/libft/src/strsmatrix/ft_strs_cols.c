@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_strs_cols.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jcodina- <fjavier.codina@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/12/31 13:46:52 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/12/31 13:46:52 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../../includes/libft.h"
 
-int	printf_hex_low(long long var)
+/**
+ * Calculates the number of columns of a constant columns length matrix of strings.
+*/
+unsigned int	ft_strs_cols(const char **strs)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
-
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	return (ft_strlen(strs[0]));
 }

@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/16 14:40:46 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:23:06 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	printf_hex_low(long long var)
+#include "../../includes/libft.h"
+/**
+ * Sends character c to file descriptor fd.
+ * @param c Character to send.
+ * @param fd File descriptor to send character.
+ */
+void	ft_putchar_fd(char c, int fd)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
-
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	write(fd, &c, 1);
 }

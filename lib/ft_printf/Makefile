@@ -7,7 +7,7 @@ NAME = libftprintf.a
 
 CC	= cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_PATH = ../libft/
+LIBFT_PATH = ../libft/bin/
 LIBFT = $(LIBFT_PATH)libft.a
 AR = ar rcs
 RM = rm -rf

@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_hex.c                                       :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:46:45 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:20:40 by jcodina-         ###   ########.fr       */
+/*   Created: 2023/01/16 20:22:16 by jcodina-          #+#    #+#             */
+/*   Updated: 2023/01/26 15:23:24 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	printf_hex_low(long long var)
+#include "../../includes/libft.h"
+/**
+ * Used to protect double pointer array p form allocation error.
+ * Liberates n arrays in p and p.
+ * @param p Double pointer to liberate recursively.
+ * @param n Number of arrays in p to free. 
+ * @return NULL
+ */
+void	*free_darray(void **p, int n)
 {
-	return (ft_putnbrlen_hex(var, 0));
-}
+	int	i;
 
-int	printf_hex_upp(long long var)
-{
-	return (ft_putnbrlen_hex(var, 1));
+	i = 0;
+	while (i < n)
+	{
+		free(p[i]);
+		i++;
+	}
+	free(p);
+	return (NULL);
 }
