@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2023/12/14 13:29:39 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/03 09:34:46 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void			sig_handler(int signum, siginfo_t *info, void *context);
 
 /*									CLIENT DATA								  */
 
-void			client_data_init(char *pid, char *msg);
+t_client_data	*client_data_init(char *pid, char *msg);
 void			client_data_clean(t_client_data *client_data);
 
 /*									MATRIX									  */
