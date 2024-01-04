@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:49:41 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 11:02:49 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/04 10:01:04 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ typedef struct s_server_data
 {
     e_t_server_state    state;
     size_t              msg_size;
-    int                 *msg_size_bin;
     char                *msg;
-    int                 **msg_bin;
-    int                 bit;
-    pid_t               client_pid;
+    int					client_pid;
 }   t_server_data;
 
 /* ************************************************************************** */
@@ -47,6 +44,16 @@ typedef struct s_server_data
 
 /*									SERVER COMMS							  */
 
-void    register_sig_handler(void);
+void    		register_sig_handler(void);
+
+/*									SERVER DATA							  */
+
+t_server_data	*initialize_server_data();
+void			free_server_data(t_server_data *server_data);
+void			clear_server_data(t_server_data *server_data);
+
+
+void	client_signal_handler(int signum, siginfo_t *info, void *context);
+unsigned char	bin_to_char(int *bin);
 
 #endif
