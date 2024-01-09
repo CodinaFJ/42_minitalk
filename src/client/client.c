@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 10:36:02 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:29:26 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,16 @@ void	send_tab(int *tab, size_t size, int pid)
 	while (i < size)
 	{
 		if (tab[i] == 1)
-			kill(pid, SIGUSR1);
+		{
+			if (kill(pid, SIGUSR1) == -1)
+				ft_printf("Error sending\n");
+		}
 		else if (tab[i] == 0)
-			kill(pid, SIGUSR2);
-		wait_for_server_ack();
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				ft_printf("Error sending\n");
+		}
+		wait_for_server_ack(pid);
 		i++;
 	}
 }
@@ -43,10 +49,12 @@ void	send_size_to_server(size_t msg_size, int pid)
 		i++;
 		bit_index--;
 	}
-	print_arr(size_bin_tab, 8 * sizeof(size_t));
-	ft_printf("\n");
-	kill(pid, SIGUSR1);
-	wait_for_server_ack();
+	// print_arr(size_bin_tab, 8 * sizeof(size_t));
+	// ft_printf("\n");
+	if (kill(pid, SIGUSR1) == -1)
+		ft_printf("Error sending\n");
+	wait_for_server_ack(pid);
+	// ft_printf("send size\n");
 	send_tab(size_bin_tab, 8 * sizeof(size_t), pid);
 }
 
@@ -55,34 +63,31 @@ void	send_msg_to_server(t_client_data *client_data)
 	size_t	i;
 
 	i = 0;
-	ft_printf("Msg len: %d\n", (int) client_data->msg_len);
 	while (i < client_data->msg_len)
 	{
-		//bin_to_int(client_data->binary_msg[i]);
 		send_tab(client_data->binary_msg[i], 8, client_data->server_pid);
 		i++;
 	}
 }
 
-// !Probablemente para que funcione con UTF-16 haya que cambiar de char a wchar
 int	main(int argc, char **argv)
 {
 	t_client_data	*client_data;
-	if (argc != 3)
+	if (argc != 3 || ft_atoi(argv[1]) == 0)
 	{
 		ft_printf("Wrong parameters. Input:\n[1] SERVER PID\n[2] MESSAGE\n");
 		return (1);
 	}
 	client_data = client_data_init(argv[1], argv[2]);
 	register_sig_handler();
-	print_tab(client_data->binary_msg, client_data->msg_len);
 	if (client_data->binary_msg == NULL)
 	{
-		ft_printf("Error creating binary message");
+		ft_printf("Error creating binary message\n");
 		return (1);
 	}
 	send_size_to_server(client_data->msg_len, client_data->server_pid);
-	send_msg_to_server(client_data);
+	if (client_data->msg_len > 0)
+		send_msg_to_server(client_data);
 	client_data_clean(client_data);
 	return (0);
 }

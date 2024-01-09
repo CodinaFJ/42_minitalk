@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:58:50 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:29:15 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../../lib/ft_printf/ft_printf.h"
 # include "../../lib/libft/includes/libft.h"
 
-# define TIMEOUT 500000
+# define TIMEOUT 2000000
 
 /* ************************************************************************** */
 /*   Typedefs															      */
@@ -53,7 +53,7 @@ void			register_sig_handler(void);
 
 /*									CLIENT ACK								  */
 
-void			wait_for_server_ack(void);
+void			wait_for_server_ack(int pid);
 void			sig_ack_handler(int signum, siginfo_t *info, void *context);
 
 /*									CLIENT DATA								  */

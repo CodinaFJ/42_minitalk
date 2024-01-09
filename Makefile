@@ -9,9 +9,9 @@ NAME = minitalk
 
 CC	= cc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT_PATH = ./lib/libft/bin/
+LIBFT_PATH = ./lib/libft/
 FT_PRINTF_PATH = ./lib/ft_printf/
-LIBFT = $(LIBFT_PATH)libft.a
+LIBFT = $(LIBFT_PATH)/bin/libft.a
 FT_PRINTF = $(FT_PRINTF_PATH)libftprintf.a
 AR = ar rcs
 RM = rm -rf
@@ -32,7 +32,7 @@ Sources & objects - Server
 
 FILES_SERVER	=	server			\
 					server_signal	\
-					server_data		\
+					server_data
 
 SRCS_SERVER	=	$(addsuffix .c, $(FILES_SERVER))
 OBJS_SERVER	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES_SERVER)))
@@ -87,11 +87,11 @@ $(FT_PRINTF):
 
 $(SERVER): $(OBJS_SERVER)
 	@$(CC) $(OBJS_SERVER) $(LIBFT) $(FT_PRINTF) -o $(SERVER)
-	@echo "\n$(G)Server compilation finished!$(DEF_COLOR)-> $(SERVER)\n"
+	@echo "\n$(G)[$(NAME)] Server compilation finished!$(DEF_COLOR)-> $(SERVER)\n"
 
 $(CLIENT): $(OBJS_CLIENT)
 	@$(CC) $(OBJS_CLIENT) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
-	@echo "\n$(G)Client compilation finished!$(DEF_COLOR)-> $(CLIENT)\n"
+	@echo "\n$(G)[$(NAME)] Client compilation finished!$(DEF_COLOR)-> $(CLIENT)\n"
 
 $(OBJ_DIR)%.o:$(SRC_DIR_SERVER)%.c
 	@mkdir -p $(OBJ_DIR)
@@ -105,11 +105,11 @@ $(OBJ_DIR)%.o:$(SRC_DIR_CLIENT)%.c
 
 clean:
 	@$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
-	@echo "$(R)[$(NAME)] All $(OBJ_DIR)*.o files removed$(DEF_COLOR)\n"
+	@echo "$(R)[$(NAME)] Removed all $(OBJ_DIR)*.o$(DEF_COLOR)"
 
 fclean: clean
 	@$(RM) $(SERVER) $(CLIENT)
-	@echo "$(R)$(SERVER) and $(CLIENT) removed$(DEF_COLOR)\n"
+	@echo "$(R)[$(NAME)] Removed $(SERVER) and $(CLIENT)$(DEF_COLOR)\n"
 
 clean_libs:
 	@make clean -C $(LIBFT_PATH)

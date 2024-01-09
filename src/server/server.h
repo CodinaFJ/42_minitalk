@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:49:41 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/04 10:01:04 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/09 10:46:23 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 
 typedef enum e_server_state
 {
-    IDLE,
-    RCV_SIZE,
-    RCV_MSG
+    IDLE = 0,
+    RCV_SIZE = 1,
+    RCV_MSG = 2
 }   e_t_server_state;
 
 typedef struct s_server_data
@@ -36,6 +36,7 @@ typedef struct s_server_data
     size_t              msg_size;
     char                *msg;
     int					client_pid;
+    t_list              *client_queue;
 }   t_server_data;
 
 /* ************************************************************************** */
@@ -50,10 +51,13 @@ void    		register_sig_handler(void);
 
 t_server_data	*initialize_server_data();
 void			free_server_data(t_server_data *server_data);
-void			clear_server_data(t_server_data *server_data);
+void			clear_client_data(t_server_data *server_data);
 
 
 void	client_signal_handler(int signum, siginfo_t *info, void *context);
 unsigned char	bin_to_char(int *bin);
+
+void	add_client_to_queue(int pid);
+void	server_handle_queue();
 
 #endif

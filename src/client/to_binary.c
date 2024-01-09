@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:16:08 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:55:10 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/09 10:08:43 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ unsigned int	bin_to_int(int *bin)
 			c = (c << 1);
 		bit_index++;
 	}
-	ft_printf("%c", c);
 	return ((unsigned int) c);
 }
