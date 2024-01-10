@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:46:51 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:54:27 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,8 @@ unsigned char	bin_to_char(int *bin)
 	return ((unsigned char) c);
 }
 
-void	ft_leaks()
-{
-	system("leaks server.out");
-}
-
 int	main(void)
 {
-	atexit(ft_leaks);
 	ft_printf("Process PID: %d await for SIGUSR.\n", getpid());
 	g_server_data = initialize_server_data();
 	register_sig_handler();

@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:47:48 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:55:53 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,11 @@ void	send_msg_to_server(t_client_data *client_data)
 		i++;
 	}
 }
-void	ft_leaks()
-{
-	system("leaks client.out");
-}
 
 int	main(int argc, char **argv)
 {
 	t_client_data	*client_data;
 
-	atexit(ft_leaks);
 	if (argc != 3 || ft_atoi(argv[1]) == 0)
 	{
 		ft_printf("Wrong parameters. Input:\n[1] SERVER PID\n[2] MESSAGE\n");
