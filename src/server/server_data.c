@@ -6,16 +6,16 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 09:14:06 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/09 18:36:27 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:40:46 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-t_server_data	*initialize_server_data()
+t_server_data	*initialize_server_data(void)
 {
 	t_server_data	*server_data;
-	
+
 	server_data = ft_calloc(1, sizeof(t_server_data));
 	if (server_data == NULL)
 		return (NULL);

@@ -30,8 +30,9 @@ SRC_DIR_CLIENT	=	./src/client/
 Sources & objects - Server
 ########################################################################################
 
-FILES_SERVER	=	server			\
-					server_signal	\
+FILES_SERVER	=	server					\
+					server_signal			\
+					server_signal_register	\
 					server_data
 
 SRCS_SERVER	=	$(addsuffix .c, $(FILES_SERVER))

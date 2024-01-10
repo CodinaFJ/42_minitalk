@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/09 19:29:15 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:36:23 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 /*									ENUMS									*/
 
-typedef enum
+typedef enum e_bool
 {
 	true = 1,
 	false = 0

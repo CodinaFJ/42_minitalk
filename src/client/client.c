@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/09 19:29:26 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:47:48 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	send_tab(int *tab, size_t size, int pid)
 {
-	size_t i;
-	
+	size_t	i;
+
 	i = 0;
 	while (i < size)
 	{
@@ -49,13 +49,11 @@ void	send_size_to_server(size_t msg_size, int pid)
 		i++;
 		bit_index--;
 	}
-	// print_arr(size_bin_tab, 8 * sizeof(size_t));
-	// ft_printf("\n");
 	if (kill(pid, SIGUSR1) == -1)
 		ft_printf("Error sending\n");
 	wait_for_server_ack(pid);
-	// ft_printf("send size\n");
 	send_tab(size_bin_tab, 8 * sizeof(size_t), pid);
+	free(size_bin_tab);
 }
 
 void	send_msg_to_server(t_client_data *client_data)
@@ -69,10 +67,16 @@ void	send_msg_to_server(t_client_data *client_data)
 		i++;
 	}
 }
+void	ft_leaks()
+{
+	system("leaks client.out");
+}
 
 int	main(int argc, char **argv)
 {
 	t_client_data	*client_data;
+
+	atexit(ft_leaks);
 	if (argc != 3 || ft_atoi(argv[1]) == 0)
 	{
 		ft_printf("Wrong parameters. Input:\n[1] SERVER PID\n[2] MESSAGE\n");

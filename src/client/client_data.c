@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:01:09 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/03 09:59:40 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:37:32 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_client_data	*client_data_init(char *pid, char *msg)
 {
 	t_client_data	*client_data;
-	
+
 	client_data = malloc(sizeof(t_client_data));
 	ft_bzero(client_data, sizeof(t_client_data));
 	client_data->ack = false;

@@ -6,24 +6,13 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:57:19 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/09 19:35:08 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/01/10 19:44:38 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
 extern t_server_data	*g_server_data;
-
-void    register_sig_handler(void)
-{
-    struct sigaction	sa;
-    
-    sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART | SA_SIGINFO;
-	sa.sa_sigaction = client_signal_handler;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-}
 
 void	idle_signal_handler(int signum, int pid)
 {
@@ -37,8 +26,8 @@ void	idle_signal_handler(int signum, int pid)
 
 void	rcv_size_signal_handler(int signum, int pid)
 {
-	static size_t bit = 0;
-	
+	static size_t	bit = 0;
+
 	if (signum == SIGUSR1)
 		g_server_data->msg_size += ft_pow(2, 8 * sizeof(size_t) - bit - 1);
 	bit++;
@@ -104,8 +93,10 @@ void	rcv_msg_signal_handler(int signum, int pid)
 
 void	client_signal_handler(int signum, siginfo_t *info, void *context)
 {
+	int		pid;
+
 	(void) context;
-	int		pid = info->si_pid;
+	pid = info->si_pid;
 	if (g_server_data->state == IDLE)
 		idle_signal_handler(signum, pid);
 	else if (pid != g_server_data->client_pid || pid == 0)
