@@ -96,6 +96,8 @@ $(CLIENT): $(OBJS_CLIENT)
 	@$(CC) $(OBJS_CLIENT) $(LIBFT) $(FT_PRINTF) -o $(CLIENT)
 	@echo "\n$(G)[$(NAME)] Client compilation finished!$(DEF_COLOR)-> $(CLIENT)\n"
 
+bonus:	all
+
 $(OBJ_DIR)%.o:$(SRC_DIR_SERVER)%.c
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(Y)Compiling: $< $(DEF_COLOR)"
