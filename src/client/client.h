@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/03/03 12:24:18 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 14:20:57 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			register_sig_handler(void);
 
 /*									CLIENT ACK								  */
 
-void			wait_for_server_ack(int pid);
+void			wait_for_server_ack(int pid, int sig);
 void			sig_ack_handler(int signum, siginfo_t *info, void *context);
 
 /*									CLIENT DATA								  */

@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:36:52 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/03/03 11:10:13 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 14:21:03 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	sig_ack_handler(int signum, siginfo_t *info, void *context)
 	g_server_ack = true;
 }
 
-void	check_ack_server(int pid)
+void	check_ack_server(int pid, int sig)
 {
-	kill(pid, SIGUSR1);
+	kill(pid, sig);
 	ft_printf("No response from server\n");
 }
 
-void	wait_for_server_ack(int pid)
+void	wait_for_server_ack(int pid, int sig)
 {
 	int	timer;
 	int	delta_timer;
@@ -45,7 +45,7 @@ void	wait_for_server_ack(int pid)
 		}
 		if (delta_timer > TIME_BUSY)
 		{
-			check_ack_server(pid);
+			check_ack_server(pid, sig);
 			delta_timer = 0;
 		}
 		if (++timer > TIMEOUT)

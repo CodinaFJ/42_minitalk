@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:51 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/03/03 12:32:53 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 14:22:36 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	send_tab(int *tab, size_t size, int pid)
 			if (kill(pid, SIGUSR2) == -1)
 				error_exit("Error sending");
 		}
-		wait_for_server_ack(pid);
+		wait_for_server_ack(pid, SIGUSR2 - tab[i]);
 		i++;
 	}
 }
@@ -52,7 +52,7 @@ void	send_size_to_server(size_t msg_size, int pid)
 	}
 	if (kill(pid, SIGUSR1) == -1)
 		error_exit("Error sending");
-	wait_for_server_ack(pid);
+	wait_for_server_ack(pid, SIGUSR1);
 	send_tab(size_bin_tab, 8 * sizeof(size_t), pid);
 	free(size_bin_tab);
 }
