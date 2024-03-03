@@ -6,52 +6,47 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:57:19 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:44:38 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 12:20:36 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-extern t_server_data	*g_server_data;
-
-void	idle_signal_handler(int signum, int pid)
+void	idle_signal_handler(int signum, int pid, t_server_data *server_data)
 {
 	(void) signum;
 	if (signum != SIGUSR1)
-		ft_printf("[ERROR] Incompatible signal with server state\n");
-	g_server_data->state = RCV_SIZE;
-	g_server_data->client_pid = pid;
+		ft_printf("[ERROR] Incompatible signal with server state");
+	server_data->state = RCV_SIZE;
+	server_data->client_pid = pid;
 	kill(pid, SIGUSR1);
 }
 
-void	rcv_size_signal_handler(int signum, int pid)
+void	rcv_size_signal_handler(int signum, int pid, t_server_data *server_data)
 {
 	static size_t	bit = 0;
 
 	if (signum == SIGUSR1)
-		g_server_data->msg_size += ft_pow(2, 8 * sizeof(size_t) - bit - 1);
+		server_data->msg_size += ft_pow(2, 8 * sizeof(size_t) - bit - 1);
 	bit++;
 	if (bit >= 8 * sizeof(size_t))
 	{
-		if (g_server_data->msg_size == 0)
-			clear_client_data(g_server_data);
+		if (server_data->msg_size == 0)
+			clear_server_data(server_data);
 		else
 		{
-			g_server_data->state = RCV_MSG;
-			g_server_data->msg = malloc(g_server_data->msg_size + 1);
-			if (g_server_data->msg == NULL)
-			{
-				ft_printf("[ERROR] Fail message memory allocation\n");
-				return ;
-			}
-			ft_bzero(g_server_data->msg, g_server_data->msg_size + 1);
+			server_data->state = RCV_MSG;
+			server_data->msg = malloc(server_data->msg_size + 1);
+			if (server_data->msg == NULL)
+				error_exit("[ERROR] Fail message memory allocation");
+			ft_bzero(server_data->msg, server_data->msg_size + 1);
 		}
 		bit = 0;
 	}
 	kill(pid, SIGUSR1);
 }
 
-void	rcv_char(int signum)
+void	rcv_char(int signum, t_server_data *server_data)
 {
 	static int	bit = 0;
 	static int	*binary_char;
@@ -61,7 +56,7 @@ void	rcv_char(int signum)
 	{
 		binary_char = (int *) ft_calloc(8, sizeof(int));
 		if (!binary_char)
-			return ;
+			error_exit("[ERROR] Memory allocation");
 	}
 	if (signum == SIGUSR1)
 		binary_char[bit] = 1;
@@ -71,20 +66,20 @@ void	rcv_char(int signum)
 	if (bit == 8)
 	{
 		c = (char) bin_to_char(binary_char);
-		ft_strncat(g_server_data->msg, &c, 1);
+		ft_strncat(server_data->msg, &c, 1);
 		bit = 0;
 		if (binary_char)
 			free(binary_char);
 	}
 }
 
-void	rcv_msg_signal_handler(int signum, int pid)
+void	rcv_msg_signal_handler(int signum, int pid, t_server_data *server_data)
 {
-	rcv_char(signum);
-	if (ft_strlen(g_server_data->msg) >= g_server_data->msg_size)
+	rcv_char(signum, server_data);
+	if (ft_strlen(server_data->msg) >= server_data->msg_size)
 	{
-		ft_printf("%s\n", g_server_data->msg);
-		clear_client_data(g_server_data);
+		ft_printf("%s\n", server_data->msg);
+		clear_server_data(server_data);
 		kill(pid, SIGUSR1);
 		return ;
 	}
@@ -93,16 +88,23 @@ void	rcv_msg_signal_handler(int signum, int pid)
 
 void	client_signal_handler(int signum, siginfo_t *info, void *context)
 {
-	int		pid;
+	int						pid;
+	static t_server_data	*server_data;
 
 	(void) context;
+	if (server_data == NULL)
+	{
+		server_data = initialize_server_data();
+		if (server_data == NULL)
+			error_exit("[ERROR] Memory allocation");
+	}
 	pid = info->si_pid;
-	if (g_server_data->state == IDLE)
-		idle_signal_handler(signum, pid);
-	else if (pid != g_server_data->client_pid || pid == 0)
+	if (server_data->state == IDLE)
+		idle_signal_handler(signum, pid, server_data);
+	else if (pid != server_data->client_pid || pid == 0)
 		return ;
-	else if (g_server_data->state == RCV_SIZE)
-		rcv_size_signal_handler(signum, pid);
-	else if (g_server_data->state == RCV_MSG)
-		rcv_msg_signal_handler(signum, pid);
+	else if (server_data->state == RCV_SIZE)
+		rcv_size_signal_handler(signum, pid, server_data);
+	else if (server_data->state == RCV_MSG)
+		rcv_msg_signal_handler(signum, pid, server_data);
 }

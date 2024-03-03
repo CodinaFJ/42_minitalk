@@ -6,13 +6,11 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 19:54:43 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:54:27 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:53:09 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-
-t_server_data	*g_server_data;
 
 unsigned char	bin_to_char(int *bin)
 {
@@ -35,9 +33,8 @@ unsigned char	bin_to_char(int *bin)
 int	main(void)
 {
 	ft_printf("Process PID: %d await for SIGUSR.\n", getpid());
-	g_server_data = initialize_server_data();
 	register_sig_handler();
 	while (1)
 		pause();
-	return (0);
+	exit(0);
 }

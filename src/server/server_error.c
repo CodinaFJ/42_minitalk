@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strs_clear.c                                    :+:      :+:    :+:   */
+/*   server_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/31 14:15:21 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/03/03 11:59:58 by jcodina-         ###   ########.fr       */
+/*   Created: 2024/03/03 12:17:46 by jcodina-          #+#    #+#             */
+/*   Updated: 2024/03/03 12:18:43 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "server.h"
 
-/**
- * Empties and frees all strings in the strings matrix.
- * Keeps allocation of strs matrix.
-*/
-void	ft_strs_clear(char **strs)
+void	error_exit(char *error_msg)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (strs[i] != NULL)
-	{
-		if (strs[i] != NULL)
-			free(strs[i]);
-		strs[i] = NULL;
-		i++;
-	}
+	ft_printf("%s\n", error_msg);
+	exit(1);
 }

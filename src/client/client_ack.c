@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:36:52 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:37:22 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 11:10:13 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	wait_for_server_ack(int pid)
 			g_server_ack = false;
 			return ;
 		}
-		if (delta_timer > 100000)
+		if (delta_timer > TIME_BUSY)
 		{
 			check_ack_server(pid);
 			delta_timer = 0;

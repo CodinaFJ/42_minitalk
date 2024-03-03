@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 10:49:41 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:40:24 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 12:19:32 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_server_data
 	size_t			msg_size;
 	char			*msg;
 	int				client_pid;
-	t_list			*client_queue;
 }	t_server_data;
 
 /* ************************************************************************** */
@@ -53,6 +52,10 @@ unsigned char	bin_to_char(int *bin);
 
 t_server_data	*initialize_server_data(void);
 void			free_server_data(t_server_data *server_data);
-void			clear_client_data(t_server_data *server_data);
+void			clear_server_data(t_server_data *server_data);
+
+/*									ERROR								  */
+
+void			error_exit(char *error_msg);
 
 #endif

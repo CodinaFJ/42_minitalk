@@ -3,8 +3,8 @@
 #		PROJECT: minitalk																#\
 #########################################################################################
 
-SERVER = $(BIN_DIR)server.out
-CLIENT = $(BIN_DIR)client.out
+SERVER = $(BIN_DIR)server
+CLIENT = $(BIN_DIR)client
 NAME = minitalk
 
 CC	= cc
@@ -33,6 +33,7 @@ Sources & objects - Server
 FILES_SERVER	=	server					\
 					server_signal			\
 					server_signal_register	\
+					server_error			\
 					server_data
 
 SRCS_SERVER	=	$(addsuffix .c, $(FILES_SERVER))
@@ -47,6 +48,7 @@ FILES_CLIENT	=	client			\
 					client_ack		\
 					client_data		\
 					matrix			\
+					client_error	\
 					to_binary
 
 SRCS_CLIENT	=	$(addsuffix .c, $(FILES_CLIENT))
@@ -104,11 +106,11 @@ $(OBJ_DIR)%.o:$(SRC_DIR_CLIENT)%.c
 	@echo "$(Y)Compiling: $< $(DEF_COLOR)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-clean:
+clean: clean_libs
 	@$(RM) $(OBJS_SERVER) $(OBJS_CLIENT)
 	@echo "$(R)[$(NAME)] Removed all $(OBJ_DIR)*.o$(DEF_COLOR)"
 
-fclean: clean
+fclean: clean fclean_libs
 	@$(RM) $(SERVER) $(CLIENT)
 	@echo "$(R)[$(NAME)] Removed $(SERVER) and $(CLIENT)$(DEF_COLOR)\n"
 

@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:32:42 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/01/10 19:36:23 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 12:24:18 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../../lib/libft/includes/libft.h"
 
 # define TIMEOUT 2000000
+# define TIME_BUSY 500000
 
 /* ************************************************************************** */
 /*   Typedefs															      */
@@ -29,8 +30,8 @@
 
 typedef enum e_bool
 {
-	true = 1,
-	false = 0
+	false = 0,
+	true = 1
 }	t_bool;
 
 /*									STRUCTS									*/
@@ -71,5 +72,9 @@ void			print_arr(int *arr, size_t len);
 
 int				**str_to_bin(char *str);
 unsigned int	bin_to_int(int *bin);
+
+/*									ERROR									  */
+
+void			error_exit(char *error_msg);
 
 #endif
