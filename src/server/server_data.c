@@ -6,7 +6,7 @@
 /*   By: jcodina- <jcodina-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 09:14:06 by jcodina-          #+#    #+#             */
-/*   Updated: 2024/03/03 11:15:10 by jcodina-         ###   ########.fr       */
+/*   Updated: 2024/03/03 17:43:39 by jcodina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	clear_server_data(t_server_data *server_data)
 	if (!server_data)
 		return ;
 	if (server_data->msg)
+	{
 		free(server_data->msg);
+		server_data->msg = NULL;
+	}
 	server_data->msg_size = 0;
 	server_data->client_pid = 0;
 	server_data->state = IDLE;
